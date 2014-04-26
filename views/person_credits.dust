@@ -1,0 +1,8 @@
+{>layout/}
+{<content}
+	<ul>
+	{#credits.cast}
+		<li><a href="/movies/movie/{id}">{original_title}</a></li>
+	{/credits.cast}
+	</ul>
+{/content}

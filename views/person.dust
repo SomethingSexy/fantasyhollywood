@@ -1,0 +1,9 @@
+{>layout/}
+{<content}
+	<p>{person.name}</p>
+	<a href="/person/{person.id}/credits">Credits</a>
+	<p>{person.biography}</p>
+	<p>{person.birthday}</p>
+	<p>{#person.deathday}Dead{:else}Alive{/person.deathday}</p>
+	<p>imdb id: {person.imdb_id}</p>
+{/content}

@@ -9,6 +9,7 @@ var cons = require('consolidate');
 
 var routes = require('./routes/index');
 var movies = require('./routes/movies');
+var person = require('./routes/person');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/movies', movies);
+app.use('/person', person);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

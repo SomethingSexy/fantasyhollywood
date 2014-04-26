@@ -2,15 +2,14 @@ var express = require('express');
 var router = express.Router();
 var http = require('http');
 
-/* GET users listing. */
-router.get('/movie/:id', function(req, routeResponse) {
-
+/* GET home page. */
+router.get('/:id', function(req, routeResponse) {
 	var query = require('querystring').stringify({
 		'api_key' : 'df948910be786425869fc196919661ee'
 	});
 	console.log(query);
 	//array('api_key' => 'df948910be786425869fc196919661ee'), array('header' => array('Accept' => "application/json")));
-	http.get("http://api.themoviedb.org/3/movie/" + req.param("id") + "?" + query, function(res) {
+	http.get("http://api.themoviedb.org/3/person/" + req.param("id") + "?" + query, function(res) {
 		// console.dir(res);
 		var body = '';
 		res.on('data', function(chunk) {
@@ -18,7 +17,7 @@ router.get('/movie/:id', function(req, routeResponse) {
 		});
 		res.on('end', function() {
 		    console.log(body);
-		    routeResponse.render('movie', { title: 'Movie Information', movie: JSON.parse(body)});
+		    routeResponse.render('person', { title: 'Person Information', person: JSON.parse(body)});
 		});
 	  	console.log("Got response: " + res.statusCode);
 	}).on('error', function(e) {
@@ -26,14 +25,13 @@ router.get('/movie/:id', function(req, routeResponse) {
 	});
 });
 
-router.get('/movie/:id/cast', function(req, routeResponse) {
-
+router.get('/:id/credits', function(req, routeResponse) {
 	var query = require('querystring').stringify({
 		'api_key' : 'df948910be786425869fc196919661ee'
 	});
 	console.log(query);
 	//array('api_key' => 'df948910be786425869fc196919661ee'), array('header' => array('Accept' => "application/json")));
-	http.get("http://api.themoviedb.org/3/movie/" + req.param("id") + "/credits?" + query, function(res) {
+	http.get("http://api.themoviedb.org/3/person/" + req.param("id") + "/combined_credits?" + query, function(res) {
 		// console.dir(res);
 		var body = '';
 		res.on('data', function(chunk) {
@@ -41,7 +39,7 @@ router.get('/movie/:id/cast', function(req, routeResponse) {
 		});
 		res.on('end', function() {
 		    console.log(body);
-		    routeResponse.render('cast', { title: 'Cast Information', cast: JSON.parse(body)});
+		    routeResponse.render('person_credits', { title: 'Person Credits Information', credits: JSON.parse(body)});
 		});
 	  	console.log("Got response: " + res.statusCode);
 	}).on('error', function(e) {

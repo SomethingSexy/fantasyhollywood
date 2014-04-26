@@ -1,0 +1,8 @@
+{>layout/}
+{<content}
+	<ul>
+	{#cast.cast}
+		<li><a href="/person/{id}">{name}</a></li>
+	{/cast.cast}
+	</ul>
+{/content}

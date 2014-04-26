@@ -1,4 +1,15 @@
 {>layout/}
 {<content}
-	Movie Info
+	<h2>{movie.original_title}</h2>
+	<a href="/movies/movie/{movie.id}/cast">Cast</a>
+	<p>{movie.overview}</p>
+	<p>Budget ${movie.budget}</p>
+	<p>Revenue ${movie.revenue}</p>
+	<p>Release {movie.release_date}</p>
+	<h3>Genres:</h3>
+	<ul>
+	{#movie.genres}
+		<li>{name}</li>
+	{/movie.genres}
+	</ul>
 {/content}

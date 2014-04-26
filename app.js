@@ -4,6 +4,8 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var dust = require('dustjs-linkedin')
+var cons = require('consolidate');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -11,8 +13,10 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
+app.engine('dust', cons.dust);
+app.set('template_engine', 'dust');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'dust');
 
 app.use(favicon());
 app.use(logger('dev'));
